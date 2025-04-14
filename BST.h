@@ -96,7 +96,8 @@ public:
     if (root == NULL) cout << "The BST is empty.\n";
     else printhelp(root, 0);
   }
-  
+    printPreOrder(root, level);
+    printPostOrder(root, level);
 };
 
 // Visit -- prints out root
