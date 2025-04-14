@@ -32,7 +32,11 @@ private:
   BSTNode<Key,E>* removehelp(BSTNode<Key, E>*, const Key&);
   E* findhelp(BSTNode<Key, E>*, const Key&) const;
   void printhelp(BSTNode<Key, E>*, int) const;
+
+  void printPostOrder(BSTNode<Key, E>*, int) const;
+
   void printPreOrder(BSTNode<Key, E>* root, int level) const;
+
   void visit(BSTNode<Key, E>*) const;
 
 public:
@@ -199,6 +203,17 @@ printhelp(BSTNode<Key, E>* root, int level) const {
   printhelp(root->right(), level+1);  // Do right subtree
 }
 
+
+// Print out a BST postOrder
+template <typename Key, typename E>
+void BST<Key, E>::
+printPostOrder(BSTNode<Key, E>* root, int level) const {
+  if (root == NULL) return;           // Empty tree
+  printPostOrder(root->left(), level+1);   // Do left subtree
+  printPostOrder(root->right(), level+1);  // Do right subtree
+  visit(root);						  // Print node value
+}
+
 template <typename Key, typename E>
 void BST<Key, E>::
 printPreOrder(BSTNode<Key, E>* root, int level) const {
@@ -207,3 +222,4 @@ printPreOrder(BSTNode<Key, E>* root, int level) const {
   printPreOrder(root->left(), level+1);   // Do left subtree
   printPreOrder(root->right(), level+1);  // Do right subtree
 }
+
